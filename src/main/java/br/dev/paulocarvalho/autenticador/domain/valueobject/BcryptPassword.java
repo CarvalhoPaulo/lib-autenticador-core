@@ -1,7 +1,7 @@
-package br.dev.paulocarvalho.autenticador.domain.model;
+package br.dev.paulocarvalho.autenticador.domain.valueobject;
 
-import br.dev.paulocarvalho.autenticador.domain.exception.InvalidPasswordlException;
-import br.dev.paulocarvalho.autenticador.domain.exception.SenhaInvalidaException;
+import br.dev.paulocarvalho.autenticador.domain.exception.InvalidPasswordException;
+import br.dev.paulocarvalho.autenticador.domain.exception.PasswordMatchesException;
 import io.quarkus.elytron.security.common.BcryptUtil;
 
 public class BcryptPassword {
@@ -19,20 +19,20 @@ public class BcryptPassword {
 
     private final String hashPassword;
 
-    BcryptPassword(String password) throws InvalidPasswordlException {
+    public BcryptPassword(String password) throws InvalidPasswordException {
         if (password != null && password.matches(BCRYPT_REGEX)) {
             this.hashPassword = password;
         } else {
             if (!isValid(password)) {
-                throw new InvalidPasswordlException();
+                throw new InvalidPasswordException();
             }
             this.hashPassword = BcryptUtil.bcryptHash(password);
         }
     }
 
-    public void checkPassword(String plainPassword) throws SenhaInvalidaException {
+    public void checkPassword(String plainPassword) throws PasswordMatchesException {
         if (!BcryptUtil.matches(plainPassword, hashPassword)) {
-            throw new SenhaInvalidaException();
+            throw new PasswordMatchesException();
         }
     }
 

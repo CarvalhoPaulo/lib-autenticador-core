@@ -1,4 +1,4 @@
-package br.dev.paulocarvalho.autenticador.domain.model;
+package br.dev.paulocarvalho.autenticador.domain.valueobject;
 
 import br.dev.paulocarvalho.autenticador.domain.exception.InvalidUsernameException;
 

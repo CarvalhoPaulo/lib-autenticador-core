@@ -1,7 +1,15 @@
 package br.dev.paulocarvalho.autenticador.domain.model;
 
+import br.dev.paulocarvalho.arquitetura.domain.exception.InvalidEmailException;
+import br.dev.paulocarvalho.arquitetura.domain.exception.InvalidFullNameException;
 import br.dev.paulocarvalho.arquitetura.domain.model.Model;
-import br.dev.paulocarvalho.autenticador.domain.exception.*;
+import br.dev.paulocarvalho.arquitetura.domain.valueobject.Email;
+import br.dev.paulocarvalho.arquitetura.domain.valueobject.FullName;
+import br.dev.paulocarvalho.autenticador.domain.exception.InvalidPasswordException;
+import br.dev.paulocarvalho.autenticador.domain.exception.InvalidUsernameException;
+import br.dev.paulocarvalho.autenticador.domain.exception.PasswordMatchesException;
+import br.dev.paulocarvalho.autenticador.domain.valueobject.BcryptPassword;
+import br.dev.paulocarvalho.autenticador.domain.valueobject.Username;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -26,7 +34,7 @@ public class User implements Model<Long> {
                 String password,
                 Profile profile,
                 Boolean active) throws InvalidEmailException,
-            InvalidPasswordlException,
+            InvalidPasswordException,
             InvalidUsernameException,
             InvalidFullNameException {
         this.id = id;
@@ -40,7 +48,7 @@ public class User implements Model<Long> {
         }
     }
 
-    public User checkPassword(String plainPassword) throws SenhaInvalidaException {
+    public User checkPassword(String plainPassword) throws PasswordMatchesException {
         this.password.checkPassword(plainPassword);
         return this;
     }
@@ -62,6 +70,8 @@ public class User implements Model<Long> {
         return email.toString();
     }
 
-    public String getPassword() { return password.toString(); }
+    public String getPassword() {
+        return password.toString();
+    }
 
 }
