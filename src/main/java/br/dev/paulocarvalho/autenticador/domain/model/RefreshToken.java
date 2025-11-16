@@ -1,6 +1,6 @@
 package br.dev.paulocarvalho.autenticador.domain.model;
 
-import br.dev.paulocarvalho.arquitetura.domain.model.Model;
+import br.dev.paulocarvalho.arquitetura.domain.entity.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import java.util.UUID;
 @Getter
 @AllArgsConstructor
 @Builder
-public class RefreshToken implements Model<Long> {
+public class RefreshToken implements Entity<Long> {
     private static final int MAX_AGE_MINUTES = 30;
 
     private Long id;

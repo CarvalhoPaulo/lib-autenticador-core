@@ -2,7 +2,7 @@ package br.dev.paulocarvalho.autenticador.domain.model;
 
 import br.dev.paulocarvalho.arquitetura.domain.exception.InvalidEmailException;
 import br.dev.paulocarvalho.arquitetura.domain.exception.InvalidFullNameException;
-import br.dev.paulocarvalho.arquitetura.domain.model.Model;
+import br.dev.paulocarvalho.arquitetura.domain.entity.Entity;
 import br.dev.paulocarvalho.arquitetura.domain.valueobject.Email;
 import br.dev.paulocarvalho.arquitetura.domain.valueobject.FullName;
 import br.dev.paulocarvalho.autenticador.domain.exception.InvalidPasswordException;
@@ -14,7 +14,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 
-public class User implements Model<Long> {
+public class User implements Entity<Long> {
     @Getter
     private final Long id;
     private final FullName name;
